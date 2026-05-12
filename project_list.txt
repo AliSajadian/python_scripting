@@ -1,0 +1,20 @@
+1. **File organizer**: Scan a messy downloads folder using `glob` and regex to identify file types,
+then use `shutil` and `pathlib` to automatically sort each file into subfolders based on its extension
+and a user-defined mapping rule.
+
+2. **Log analyzer**: Use `argparse` to accept a log file path, then read it line-by-line with `regex`
+to extract timestamps and error levels, aggregating counts into a dictionary and printing a summary of
+the most frequent issues.
+
+3. **API data fetcher**: Loop through a list of record IDs, using the `requests` library with exponential
+backoff retries and rate-limiting delays, fetch JSON data from a REST API, extract relevant fields,
+and save results to a local JSON lines file.
+
+4. **Database migrator**: Connect to a SQLite database, fetch a batch of rows using server-side cursors,
+transform each row, wrap the changes in a transaction, and insert them into a PostgreSQL database while
+updating a `tqdm` progress bar after every 1000 rows.
+
+5. **Parallel file processor**: Use `pathlib.glob` to collect all `.txt` files in a directory,
+split the list into chunks using `multiprocessing.Pool`, and apply a processing function to each
+chunk with `concurrent.futures.ProcessPoolExecutor` while updating a shared `tqdm` progress bar
+for real-time feedback.

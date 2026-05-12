@@ -30,6 +30,7 @@ def setup_logging(log_level: str = 'INFO', log_dir: str = 'logs') -> None:
         ]
     )
 
+
 def get_logger(name: str) -> logging.Logger:
     """
     Get a logger instance.

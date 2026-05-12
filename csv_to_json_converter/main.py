@@ -9,10 +9,10 @@ Usage: python csv_to_json.py --input file.csv --output file.json
 
 import sys
 
-from utils.argument_parser import parse_arguments
-from utils.log_config import setup_logging, get_logger
-from utils.converter import read_csv_file, write_to_json_file
-from utils.validators import validate_csv_structure
+from .utils.argument_parser import parse_arguments
+from .utils.log_config import setup_logging, get_logger
+from .utils.converter import read_csv_file, write_to_json_file
+from .utils.validators import validate_csv_structure
 
 
 def main() -> int:
