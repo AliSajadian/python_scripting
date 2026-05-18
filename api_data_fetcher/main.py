@@ -21,7 +21,6 @@ except ImportError:
     from logger import log_info, log_error
 
 
-
 def fetch_user_data():
     """Example: Fetch and save user data"""
     config = APIConfig()
