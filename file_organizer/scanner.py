@@ -320,7 +320,7 @@ if __name__ == "__main__":
     try:
         from .logger import LoggerManager  # When imported as module
     except ImportError:
-        from logger import LoggerManager    # When run directly
+        from logger import LoggerManager  # When run directly
 
     LoggerManager.setup_logger(verbose=True, log_file=LOG_FILE)
 

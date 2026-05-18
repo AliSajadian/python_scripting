@@ -21,8 +21,12 @@ try:
     import structlog
     from structlog.dev import ConsoleRenderer
     STRUCTLOG_AVAILABLE = True
+
+    from .config import LOG_OUTPUT_FORMAT, LOG_FORMATS
 except ImportError:
     STRUCTLOG_AVAILABLE = False
+
+    from config import LOG_OUTPUT_FORMAT, LOG_FORMATS
 
 # Rich console for pretty output
 console = Console()
@@ -59,17 +63,25 @@ class LoggerManager():
         # Clear any existing handlers
         logger.handlers.clear()
 
-        # Create formatters
+        # Flexible logging format
+        fmt_config = LOG_FORMATS.get(LOG_OUTPUT_FORMAT, LOG_FORMATS['custom'])
+
         file_format = logging.Formatter(
-            '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-            datefmt='%Y-%m-%d %H:%M:%S'
+            fmt_config['format'],
+            datefmt=fmt_config['datefmt']
         )
 
+        # Create formatters
+        # file_format = logging.Formatter(
+        #     '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        #     datefmt='%Y-%m-%d %H:%M:%S'
+        # )
+
         # Console handler (with color if available)
-        console_handler = logging.StreamHandler(sys.stdout)
-        console_handler.setLevel(level=level)
-        console_handler.setFormatter(logging.Formatter('%(levelname)s: %(message)s'))
-        logger.addHandler(console_handler)
+        # console_handler = logging.StreamHandler(sys.stdout)
+        # console_handler.setLevel(level=level)
+        # console_handler.setFormatter(logging.Formatter('%(levelname)s: %(message)s'))
+        # logger.addHandler(console_handler)
 
         # File handler (if log_file provided)
         if log_file:
